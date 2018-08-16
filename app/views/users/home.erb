@@ -1,0 +1,4 @@
+<h1>Welcome, <%= @user.username %>. Here is your record collection:</h1>
+<% @user.records.each do |record| %>
+  <a href="/records/<%= @record.id %>"><%= record.name %>  -  <%= record.artist%></a>
+<% end %>
