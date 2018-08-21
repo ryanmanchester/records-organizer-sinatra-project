@@ -2,3 +2,5 @@
 <% @user.records.each do |record| %>
   <a href="/records/<%= @record.id %>"><%= record.name %>  -  <%= record.artist%></a>
 <% end %>
+
+<a href="/logout">Log Out</a>
