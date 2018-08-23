@@ -1,0 +1,7 @@
+<h1>Edit <%= @record.name %> by <%= @record.artist %></h1>
+<form action="/records/<%= @record.id %>" method="post">
+  <input id="hidden" type="hidden" name="_method" value="patch"></input>
+  <h3>Artist: <input type="text" name="artist" value="<%= @record.artist %>"></input></h3>
+  <h3>Album: <input type="text" name="name" value="<%= @record.name %>"></input></h3>
+  <input type="submit" value="Edit this Record"></input>
+</form>
