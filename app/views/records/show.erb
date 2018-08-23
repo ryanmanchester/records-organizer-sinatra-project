@@ -1,0 +1,9 @@
+<h1><%= @record.artist %> - <%= @record.name %></h1>
+<br></br>
+<a href="/records/<%= @record.id %>/edit">Edit this Record</a>
+<br></br>
+
+<form action="/records/<%= @record.id %>/delete" method="post">
+  <input id="hidden" type="hidden" name="_method" value="delete"></input>
+  <input type="submit" value="Delete this Record"></input>
+</form>
