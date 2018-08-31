@@ -19,7 +19,7 @@ class UsersController < ApplicationController
   get '/users/:id' do
     if logged_in?
       @user = User.find_by(id: params["id"])
-      @record = Record.find_by(user_id: session[:user_id])
+    
       erb :'users/show'
   else
     redirect '/'
@@ -43,7 +43,7 @@ post '/signup' do
 
   post '/login' do
     @user = User.find_by(username: params["username"])
-    
+
     if @user && @user.authenticate(params["password"])
       session[:user_id] = @user.id
       redirect "users/#{@user.id}"
