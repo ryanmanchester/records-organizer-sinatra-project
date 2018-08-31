@@ -9,9 +9,7 @@ class ApplicationController < Sinatra::Base
     set :session_secret, "secret"
   end
 
-  get '/' do
-    erb :'/homepage'
-  end
+
 
   helpers do
     def current_user
