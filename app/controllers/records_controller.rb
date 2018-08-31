@@ -13,19 +13,19 @@ class RecordsController < ApplicationController
     if logged_in?
       @user = User.find_by(id: session[:user_id])
       @record = Record.find_by(id: params["id"])
-      
+
       erb :'/records/show'
     else
-      redirect '/'
+      redirect '/records'
     end
   end
 
   get '/records/:id/edit' do
     if logged_in?
-      @record = Record.find_by(user_id: session[:user_id])
+      @record = Record.find_by(id: params["id"])
       erb :'/records/edit'
     else
-      redirect '/'
+      redirect '/records'
     end
   end
 
