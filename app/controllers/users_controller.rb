@@ -18,7 +18,7 @@ class UsersController < ApplicationController
 
   get '/users/:id' do
     if logged_in?
-      @user = User.find_by(id: params["id"])
+      @user = User.find_by(id: session[:user_id])
 
       erb :'users/show'
   else
