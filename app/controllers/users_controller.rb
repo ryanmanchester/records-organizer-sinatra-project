@@ -28,6 +28,7 @@ end
 
 get '/logout' do
   logout
+  flash[:message] = "Logged out. See you next time!"
   redirect '/records'
 end
 
@@ -49,7 +50,6 @@ post '/signup' do
       session[:user_id] = @user.id
       redirect "users/#{@user.id}"
     else
-      flash[:message] = "Make sure your username and password are correct and try logging in again"
       redirect '/login'
     end
   end

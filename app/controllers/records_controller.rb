@@ -2,7 +2,12 @@ class RecordsController < ApplicationController
 
 
   get '/records/new' do
+    if logged_in?
     erb :'records/new'
+  else
+    flash[:message] = "You must sign up or log in to add a record to your collection"
+    redirect '/records'
+  end
   end
 
   get '/records' do
@@ -33,11 +38,16 @@ class RecordsController < ApplicationController
   end
 
   post '/records' do
-    @record = Record.create(artist: params["artist"], name: params["name"], user_id: session[:user_id])
-    @user = User.find_by(id: session[:user_id])
+    if !params["artist"].empty? && !params["name"].empty?
+      @record = Record.create(artist: params["artist"], name: params["name"], user_id: session[:user_id])
+      @user = User.find_by(id: session[:user_id])
 
-    flash[:message] = "Successfully created your new record!"
-    redirect "/users/#{@user.id}"
+      flash[:message] = "Successfully created your new record!"
+      redirect "/users/#{@user.id}"
+    else
+      flash[:message] = "Artist and Album Name are both required fields"
+      redirect '/records/new'
+    end
   end
 
   patch '/records/:id' do
