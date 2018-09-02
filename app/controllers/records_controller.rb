@@ -39,7 +39,7 @@ class RecordsController < ApplicationController
 
   post '/records' do
     if !params["artist"].empty? && !params["name"].empty?
-      @record = Record.create(artist: params["artist"], name: params["name"], user_id: session[:user_id])
+      @record = Record.find_or_create_by(artist: params["artist"], name: params["name"], user_id: session[:user_id])
       @user = User.find_by(id: session[:user_id])
 
       flash[:message] = "Successfully created your new record!"

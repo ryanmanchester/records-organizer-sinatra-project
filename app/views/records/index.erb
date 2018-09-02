@@ -1,9 +1,13 @@
 <h1>Welcome to Record Collection Organizer!</h1>
 <h2>Here are all listed records:</h2>
-<% @records.each do |record| %>
+
+<% alphabetized = @records.sort_by {|record| record.artist} %>
+<% alphabetized.each do |record| %>
   <ul><p><%= record.artist %> - <%= record.name %></p></ul>
 <% end %>
 <br></br>
 
-<a href="/signup">Sign Up to Start Organizing Your Records</a><br>
+<a href="/signup">Sign Up to Start Organizing Your Records</a>
+<br></br>
+
 <a href="/login">Log In to See Your Collection</a>
