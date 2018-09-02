@@ -36,6 +36,7 @@ post '/signup' do
     @user = User.create(params)
     session[:user_id] = @user.id
     redirect "users/#{@user.id}"
+    flash[:message] = "Successfully created your new account!"
   else
     redirect '/signup'
     end
@@ -48,6 +49,7 @@ post '/signup' do
       session[:user_id] = @user.id
       redirect "users/#{@user.id}"
     else
+      flash[:message] = "Make sure your username and password are correct and try logging in again"
       redirect '/login'
     end
   end

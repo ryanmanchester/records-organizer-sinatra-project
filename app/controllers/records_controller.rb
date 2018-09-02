@@ -1,5 +1,5 @@
 class RecordsController < ApplicationController
-  use Rack::Flash
+
 
   get '/records/new' do
     erb :'records/new'
@@ -17,6 +17,7 @@ class RecordsController < ApplicationController
 
       erb :'/records/show'
     else
+      flash[:message] = "Please log in or sign up"
       redirect '/records'
     end
   end
@@ -26,6 +27,7 @@ class RecordsController < ApplicationController
       @record = Record.find_by(id: params["id"])
       erb :'/records/edit'
     else
+      flash[:message] = "You must be logged in to edit your record collection"
       redirect '/records'
     end
   end
@@ -33,7 +35,7 @@ class RecordsController < ApplicationController
   post '/records' do
     @record = Record.create(artist: params["artist"], name: params["name"], user_id: session[:user_id])
     @user = User.find_by(id: session[:user_id])
-    
+
     flash[:message] = "Successfully created your new record!"
     redirect "/users/#{@user.id}"
   end
@@ -42,6 +44,8 @@ class RecordsController < ApplicationController
     @user = User.find_by(id: session[:user_id])
     @record = Record.find_by(id: params["id"])
     @record.update(name: params["name"], artist: params["artist"])
+
+    flash[:message] = "Record sucessfully updated"
     redirect "/users/#{@user.id}"
   end
 
@@ -49,6 +53,8 @@ class RecordsController < ApplicationController
     @user = User.find_by(id: session[:user_id])
     @record = Record.find_by(id: params["id"])
     @record.destroy
+
+    flash[:message] = "Record sucessfully deleted"
     redirect "/users/#{@user.id}"
   end
 end
