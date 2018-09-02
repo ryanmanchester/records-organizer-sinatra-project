@@ -1,7 +1,8 @@
 <h1>Welcome, <%= @user.username %>. Here is your record collection:</h1>
 
-<% @user.records.each do |record| %>
+<% alphabetized = @user.records.sort_by {|record| record.name} %>
 
+<% alphabetized.each do |record| %>
   <ul><a href="/records/<%= record.id %>"><%= record.name %>  -  <%= record.artist%></a></ul>
 <% end %>
 <br></br>
