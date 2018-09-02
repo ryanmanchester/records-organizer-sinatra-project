@@ -1,4 +1,5 @@
 class RecordsController < ApplicationController
+  use Rack::Flash
 
   get '/records/new' do
     erb :'records/new'
@@ -32,6 +33,8 @@ class RecordsController < ApplicationController
   post '/records' do
     @record = Record.create(artist: params["artist"], name: params["name"], user_id: session[:user_id])
     @user = User.find_by(id: session[:user_id])
+    
+    flash[:message] = "Successfully created your new record!"
     redirect "/users/#{@user.id}"
   end
 
