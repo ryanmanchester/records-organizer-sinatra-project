@@ -33,7 +33,8 @@ get '/logout' do
 end
 
 post '/signup' do
-  if !params["username"].empty? && !params["email"].empty? && !params["password"].empty?
+  @existing_user = User.find_by(username: params["username"])
+  if !params["username"].empty? && !@existing_user && !params["email"].empty? && !params["password"].empty?
     @user = User.create(params)
     session[:user_id] = @user.id
     redirect "users/#{@user.id}"
