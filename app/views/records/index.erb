@@ -1,13 +1,23 @@
-<h1>Welcome to Record Collection Organizer!</h1>
-<h2>Here Are All the Record Collections From the Organizer Community:</h2>
+
+<div class="container">
+
+  <h1 class="font-weight-light text-left text-lg-left mt-4 mb-0">Welcome to Record Collection Organizer!</h1>
+  <h2 class="font-weight-light text-left text-lg-left mt-4 mb-0">Here's What We're Listening To:</h2>
+
+  <hr class="mt-2 mb-5">
+
+  <div class="row text-right text-lg-left">
 
 <% alphabetized = @records.sort_by {|record| record.artist} %>
 <% alphabetized.each do |record| %>
+
   <ul><p><%= record.artist %> - <%= record.name %></p></ul>
 <% end %>
 <br></br>
 
-<a href="/signup">Sign Up to Start Organizing Your Records</a>
-<br></br>
-
+<a href="/signup">Sign Up to Start Organizing Your Records</a><br>
 <a href="/login">Log In to See Your Collection</a>
+
+</div>
+
+</div>

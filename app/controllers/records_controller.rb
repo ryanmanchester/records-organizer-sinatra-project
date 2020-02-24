@@ -1,6 +1,4 @@
 class RecordsController < ApplicationController
-
-
   get '/records/new' do
     if logged_in?
     erb :'records/new'
@@ -17,7 +15,7 @@ class RecordsController < ApplicationController
 
   get '/records/:id' do
     @record = Record.find_by(id: params["id"])
-    
+
     if logged_in? && @record.user_id == @user.id
       @user = User.find_by(id: session[:user_id])
 
@@ -80,4 +78,6 @@ class RecordsController < ApplicationController
     flash[:message] = "You must own a record to delete it."
     redirect "/users/#{@user.id}"
   end
+end
+
 end
