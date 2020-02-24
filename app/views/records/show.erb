@@ -1,12 +1,27 @@
-<h1><%= @record.artist %> - <%= @record.name %></h1>
-<br></br>
-<a href="/records/<%= @record.id %>/edit">Edit this Record</a>
-<br></br>
+<div class="container">
 
+  <!-- Portfolio Item Heading -->
+  <h1 class="my-4">
+
+  </h1>
+
+  <!-- Portfolio Item Row -->
+  <div class="row">
+
+    <div class="col-md-6">
+      <img class="img-fluid" src=<%= @record.image_url %> alt="">
+    </div>
+
+    <div class="col-md-4">
+      <h3 class="my-3"><%= @record.name %></h3>
+      <h4 class="my-3"><%= @record.artist %></h4>
+    </div>
+</div><br>
+<div class="btn-group" role="group" aria-label="">
+<a href="/records/<%= @record.id %>/edit" class="btn btn-sm btn-secondary text-uppercase">Edit this Record</a>
 <form action="/records/<%= @record.id %>/delete" method="post">
   <input id="hidden" type="hidden" name="_method" value="delete"></input>
-  <input type="submit" value="Delete this Record"></input>
+  <input class="btn btn-sm btn-warning text-uppercase" type="submit" value="Delete this Record"></input>
 </form>
-<br></br>
-
-<a href="/users/<%= @user.id%>">Back to Profile</a>
+<a href="/users/<%= @user.id%>" class="btn btn-sm btn-secondary text-uppercase">Back to Profile</a>
+</div>
