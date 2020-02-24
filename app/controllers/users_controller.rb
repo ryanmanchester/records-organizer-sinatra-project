@@ -12,6 +12,7 @@ class UsersController < ApplicationController
     if logged_in?
       redirect "users/#{@user.id}"
     else
+    
     erb :'users/login'
   end
   end

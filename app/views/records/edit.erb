@@ -1,11 +1,10 @@
 <div class="container">
-  <div class="form-label-group">
-
-<h1>Edit <%= @record.name %> by <%= @record.artist %></h1>
+<h1>Edit <i><%= @record.name %></i> by <%= @record.artist %></h1>
+<div class="form-group">
 <form action="/records/<%= @record.id %>" method="post">
   <input id="hidden" type="hidden" name="_method" value="patch"></input>
-  <label>Artist <input type="text" name="artist" value="<%= @record.artist %>"></input></label><br></br>
-  <label>Album <input type="text" name="name" value="<%= @record.name %>"></input></label><br></br>
+  <label>Artist <input type="text" name="artist" class="form-control" value="<%= @record.artist %>"></input></label><br></br>
+  <label>Album <input type="text" name="name" class="form-control" value="<%= @record.name %>"></input></label><br></br>
   <input type="submit" value="Edit this Record" class="btn btn-sm btn-secondary text-uppercase "></input>
 </form>
 </div>
