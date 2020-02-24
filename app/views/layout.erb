@@ -1,13 +1,19 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title></title>
+  <!-- Styles -->
+  <link href="/css/bootstrap.css" rel="stylesheet">
+  <link href="/css/bootstrap-responsive.css" rel="stylesheet">
+  <link href="/css/simple-sidebar.css" rel="stylesheet">
+
   </head>
 
   <body>
     <% if flash.has?(:message) %>
   <%= flash[:message] %>
 <% end %>
+
+
     <%= yield %>
 
   </body>
