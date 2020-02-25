@@ -12,8 +12,9 @@ class ApplicationController < Sinatra::Base
 
   end
 
-
-
+get '/' do
+ redirect '/records'
+end
   helpers do
     def current_user
       @user = User.find_by(id: session[:user_id])

@@ -41,7 +41,7 @@ class RecordsController < ApplicationController
   post '/records' do
     if !params["artist"].empty? && !params["name"].empty?
       @user = User.find_by(id: session[:user_id])
-      @record = Record.find_or_create_by(artist: params["artist"], name: params["name"], user_id: session[:user_id])
+      @record = Record.find_or_create_by(artist: params["artist"], name: params["name"], user_id: session[:user_id], image_url: params["image_url"])
 
       flash[:message] = "Successfully created your new record!"
       redirect "/users/#{@user.id}"
@@ -56,7 +56,7 @@ class RecordsController < ApplicationController
     @record = Record.find_by(id: params["id"])
 
     if logged_in? && @record.user_id == @user.id
-    @record.update(name: params["name"], artist: params["artist"])
+    @record.update(name: params["name"], artist: params["artist"], image_url: params["image_url"])
 
     flash[:message] = "Record sucessfully updated"
     redirect "/users/#{@user.id}"
